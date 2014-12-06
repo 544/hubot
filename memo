@@ -1,0 +1,6 @@
+ heroku setting memo
+heroku ps:scale web=1
+heroku addons:add rediscloud
+heroku config:add HUBOT_SLACK_TOKEN=
+heroku config:add HUBOT_SLACK_TEAM=m544
+heroku config:add HUBOT_SLACK_BOTNAME=GLaDOS
