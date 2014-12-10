@@ -5,6 +5,7 @@
   "author": "masato <masato.t@gmail.com>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "githubot": "*",
     "hubot": "^2.10.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.1.1",
@@ -19,6 +20,8 @@
     "hubot-scripts": "^2.5.16",
     "hubot-shipit": "^0.1.1",
     "hubot-slack": "^2.2.0",
+    "hubot-weather-ja": "*",
+    "hubot-xmpp": "^0.1.12",
     "hubot-youtube": "^0.1.2"
   },
   "engines": {

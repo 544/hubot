@@ -6,3 +6,8 @@ heroku addons:add rediscloud
 heroku config:add HUBOT_SLACK_TOKEN=
 heroku config:add HUBOT_SLACK_TEAM=m544
 heroku config:add HUBOT_SLACK_BOTNAME=GLaDOS
+
+# for xmpp
+heroku config:add HUBOT_XMPP_USERNAME="glados@conference.m544.xmpp.slack.com"
+heroku config:add HUBOT_XMPP_PASSWORD="m544.xxx"
+heroku config:add HUBOT_XMPP_ROOMS="randam@glados@m544.xmpp.slack.com"
