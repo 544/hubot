@@ -15,7 +15,7 @@ request = require 'request'
 cheerio = require 'cheerio'
 
 module.exports = (robot) ->
-  robot.respond /LGTM/i, (msg) ->
+  robot.hear /lgtm(?:[\s!]*)$/i, (msg) ->
     url = 'http://www.lgtm.in/g'
     request url, (error, response, body) ->
         if error or response.statusCode != 200
