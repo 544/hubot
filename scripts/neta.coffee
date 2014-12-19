@@ -2,7 +2,7 @@
 #   Joke commands.
 #
 # Commands:
-#   ぬるぽ - You reply with, "ｶﾞｯ" When you post a "ぬるぽ" word.
+#   〜でもいえる？ - You reply with, "サバンナのライオン"
 #
 # Notes:
 #   ネタ/ジョーク系のbot全般
