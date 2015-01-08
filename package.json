@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "cheerio": "^0.18.0",
+    "eastasianwidth": "^0.1.0",
     "hubot-sushiyuki": "0.0.8",
     "request": "^2.51.0"
   }
