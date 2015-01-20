@@ -29,7 +29,6 @@ auth =
 twit = new twitter(auth)
 twit.verifyCredentials (err, data) ->
   throw new Error(err)  if err
-  return
 
 streams = []
 module.exports = (robot) ->
@@ -41,19 +40,13 @@ module.exports = (robot) ->
       streams.push
         key: tag
         fn: stream
-
       stream.on "data", (data) ->
         msg.send "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
-        return
-
       stream.on "destroy", (data) ->
         msg.send "I do not watch " + tag + " anymore..."
-        return
-
       return
 
     msg.send "I start watching " + tag
-    return
 
   robot.respond /twitter unwatch (.*)$/i, (msg) ->
     tag = msg.match[1]
@@ -66,27 +59,18 @@ module.exports = (robot) ->
       msg.send "I stopped watching " + tag
     else
       msg.send "I do not known such tag."
-    return
 
   robot.respond /twitter list/i, (msg) ->
     if streams.length > 0
       _.each streams, (s) ->
         msg.send s.key
-        return
-
     else
       msg.send "I have no tags."
-    return
 
   robot.respond /twitter clear/i, (msg) ->
     if streams.length > 0
       _.each streams, (s) ->
         s.fn.destroy()
         streams = _.without(streams, _.findWhere(streams, s))
-        return
-
     else
       msg.send "I have no tags."
-    return
-
-  return
