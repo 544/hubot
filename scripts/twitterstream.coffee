@@ -21,10 +21,10 @@
 twitter = require("ntwitter")
 _ = require("underscore")
 auth =
-  "consumer_key" : "i9m7pldIaKCVCW0eJxcQGZ7Z9",
-  "consumer_secret" : "OuByfBaIM4ki6eqYXU5dZurxictsQnxkqIBrZmrMYuzhN16uR1",
-  "access_token_key" : "2990863585-yxChm9ukKOd2F3SLHHw2kdihHvMsDyuEZpZ5mho",
-  "access_token_secret" : "eOufpDxjNvG8EaB5OAM3UJhDjs65SSP81ALmUItQs42i6"
+  "consumer_key" : "nyZ32mpQsAc0D47R62ZVyQ",
+  "consumer_secret" : "G5VfcRncGAIjKgFSvsfiY1O2g05lhPT1Kns6RprOjgA",
+  "access_token_key" : "5531372-OYL0PAKeYXFyCGgBF5T0Rb2tMohhz64RHNDlRBPcnB",
+  "access_token_secret" : "FI5tE7q9aNi0Zd34OQ3HrYw26NU0LkWVCM6k0JZCsklZN"
 
 twit = new twitter(auth)
 twit.verifyCredentials (err, data) ->
