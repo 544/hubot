@@ -3,13 +3,13 @@
 #  ( https://github.com/chamerling/hubot-twitterstream-script )
 #
 # Commands:
-#   hubot twitterstream watch <tag>   - Start watching a tag
-#   hubot twitterstream unwatch <tag> - Stop  watching a tag
-#   hubot twitterstream list          - Get the watched tags list
-#   hubot twitterstream clear         - Kill them all!
+#   hubot twitter watch <tag>   - Start watching a tag
+#   hubot twitter unwatch <tag> - Stop  watching a tag
+#   hubot twitter list          - Get the watched tags list
+#   hubot twitter clear         - Kill them all!
 #
 # Examples:
-#   hubot twitterstream watch github
+#   hubot twitter watch github
 #
 # Author:
 #   Christophe Hamerling
@@ -33,7 +33,7 @@ twit.verifyCredentials (err, data) ->
 
 streams = []
 module.exports = (robot) ->
-  robot.respond /twitterstream watch (.*)$/i, (msg) ->
+  robot.respond /twitter watch (.*)$/i, (msg) ->
     tag = msg.match[1]
     twit.stream "statuses/filter",
       track: tag
@@ -55,7 +55,7 @@ module.exports = (robot) ->
     msg.send "I start watching " + tag
     return
 
-  robot.respond /twitterstream unwatch (.*)$/i, (msg) ->
+  robot.respond /twitter unwatch (.*)$/i, (msg) ->
     tag = msg.match[1]
     stream = _.find(streams, (s) ->
       s.key is tag
@@ -68,7 +68,7 @@ module.exports = (robot) ->
       msg.send "I do not known such tag."
     return
 
-  robot.respond /twitterstream list/i, (msg) ->
+  robot.respond /twitter list/i, (msg) ->
     if streams.length > 0
       _.each streams, (s) ->
         msg.send s.key
@@ -78,7 +78,7 @@ module.exports = (robot) ->
       msg.send "I have no tags."
     return
 
-  robot.respond /twitterstream clear/i, (msg) ->
+  robot.respond /twitter clear/i, (msg) ->
     if streams.length > 0
       _.each streams, (s) ->
         s.fn.destroy()
