@@ -31,6 +31,8 @@
     "cheerio": "^0.18.0",
     "eastasianwidth": "^0.1.0",
     "hubot-sushiyuki": "0.0.8",
-    "request": "^2.51.0"
+    "ntwitter": "^0.5.0",
+    "request": "^2.51.0",
+    "underscore": "^1.7.0"
   }
 }
