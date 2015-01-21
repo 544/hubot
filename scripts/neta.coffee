@@ -82,8 +82,7 @@ String::toArray = ->
 
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
-    msg.message.user.name = "@channel" # バッドノウハウ・・・。
-    msg.reply "hello"
+    msg.send "@channel: hello"
 
   robot.respond /(.*)でもいえる？/i, (msg) ->
     msg.send """
