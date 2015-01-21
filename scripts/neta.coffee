@@ -7,30 +7,6 @@
 # Notes:
 #   ネタ/ジョーク系のbot全般
  
-module.exports = (robot) ->
-  robot.respond /(.*)でもいえる？/i, (msg) ->
-    msg.send """
-```
-　　　　　　　　　,、,, ,、,, ,,　,,
-　　　　　　　_,,;' '" '' ゛''" ゛' ';;,,
-　　　　　　（rヽ,;''""''゛゛゛'';, ﾉｒ）
-　　　　　　,;'゛ i ＿　　、＿ iヽ゛';,　　　　>>1お前それ#{msg.match[1]}でも同じ事言えんの？
-　　　　　 ,;'" ''| ヽ・〉　〈・ノ |ﾞ゛ `';,
-　　　　　 ,;''　"|　　 ▼　　 |ﾞ゛　`';,
-　　　　　 ,;''　　ヽ＿人＿ /　　,;'_
-　　　　 ／ｼ、　 ヽ⌒⌒ /　　 ﾘ　＼
-　　　　|　　　"ｒ,,　｀"'''ﾞ´　　,,ﾐ゛　　 |
-　　　　|　　 　　 ﾘ、　　　　,ﾘ　　　　|
-　　　　|　　　i 　　゛ｒ、ﾉ,,ｒ"　i　　　_|
-　　　　|　　　｀ー――----┴ ⌒´ ）
-　　　　（ヽ　 ＿＿＿＿＿＿ ,, ＿´）
-　　　 　（_⌒ ＿＿＿＿＿＿ ,, ィ
-　　　　　　丁　　　　　　　　　　 |
-　　　　　　 |　　　　　　　　　　　|
-```
-  """
-  
-
 omaeha = [
   "https://dl.dropboxusercontent.com/s/duj2wgbyaqge45b/6f0e791f.jpg",
   "https://dl.dropboxusercontent.com/s/bv8bo2px3fn93gh/put.jpg",
@@ -105,6 +81,30 @@ String::toArray = ->
   array
 
 module.exports = (robot) ->
+  robot.respond /hello/i, (msg) ->
+    msg.send "@channel", "hello!"
+
+  robot.respond /(.*)でもいえる？/i, (msg) ->
+    msg.send """
+```
+　　　　　　　　　,、,, ,、,, ,,　,,
+　　　　　　　_,,;' '" '' ゛''" ゛' ';;,,
+　　　　　　（rヽ,;''""''゛゛゛'';, ﾉｒ）
+　　　　　　,;'゛ i ＿　　、＿ iヽ゛';,　　　　>>1お前それ#{msg.match[1]}でも同じ事言えんの？
+　　　　　 ,;'" ''| ヽ・〉　〈・ノ |ﾞ゛ `';,
+　　　　　 ,;''　"|　　 ▼　　 |ﾞ゛　`';,
+　　　　　 ,;''　　ヽ＿人＿ /　　,;'_
+　　　　 ／ｼ、　 ヽ⌒⌒ /　　 ﾘ　＼
+　　　　|　　　"ｒ,,　｀"'''ﾞ´　　,,ﾐ゛　　 |
+　　　　|　　 　　 ﾘ、　　　　,ﾘ　　　　|
+　　　　|　　　i 　　゛ｒ、ﾉ,,ｒ"　i　　　_|
+　　　　|　　　｀ー――----┴ ⌒´ ）
+　　　　（ヽ　 ＿＿＿＿＿＿ ,, ＿´）
+　　　 　（_⌒ ＿＿＿＿＿＿ ,, ィ
+　　　　　　丁　　　　　　　　　　 |
+　　　　　　 |　　　　　　　　　　　|
+```
+  """
 
   robot.respond /(like|いいね|ありがとう|thx|おーい|ちゃん|が|は)/i, (msg) ->
     msg.send msg.random botchan_tsundere
