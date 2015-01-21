@@ -82,13 +82,8 @@ String::toArray = ->
 
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
-    msg.send "channel: hello"
-    msg.send "!channel: hello"
-    msg.send JSON.stringify(msg.message, (key, value) ->
-      if (key == "emit" ) then return
-      return value
-    )
-
+    msg.message.user.name = "channel" # バッドノウハウ・・・。
+    msg.reply "hello"
 
   robot.respond /(.*)でもいえる？/i, (msg) ->
     msg.send """
