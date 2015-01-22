@@ -1,7 +1,10 @@
-cron = require('cron').CronJob
+CronJob = require('cron').CronJob
 
 module.exports = (robot) ->
-  new cron '*/1 * * * * 1-5', () =>
-    robot.messageRoom "sandbox", "わほーい"
-  , null, true, "Asia/Tokyo"
+  new CronJob '0 * * * * *', () =>
+    # これだとSlack#generalにメッセージが流れない
+    # robot.messageRoom "#general", "テスト"
 
+    # これならおっけー☆
+    robot.messageRoom "general", "テスト"
+  , null, true, "Asia/Tokyo"
