@@ -11,9 +11,6 @@
 # Examples:
 #   hubot twitter watch github
 #
-# Author:
-#   Christophe Hamerling
-#
 # Depend
 #   ntwitter
 #   underscore
@@ -30,10 +27,11 @@ twit = new twitter(auth)
 twit.verifyCredentials (err, data) ->
   throw new Error(err)  if err
 
+tracks = [ "グラコレ", "グランドコレクション" ]
+
 streams = []
 module.exports = (robot) ->
-  robot.respond /twitter watch (.*)$/i, (msg) ->
-    tag = msg.match[1]
+  createTwitterStream = (room, tag) ->
     twit.stream "statuses/filter",
       track: tag
     , (stream) ->
@@ -41,24 +39,31 @@ module.exports = (robot) ->
         key: tag
         fn: stream
       stream.on "data", (data) ->
-        msg.send "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
+        robot.messageRoom room, "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
       stream.on "destroy", (data) ->
-        msg.send "I do not watch " + tag + " anymore..."
-      return
+        robot.messageRoom room, "I do not watch " + tag + " anymore..."
 
-    msg.send "I start watching " + tag
-
-  robot.respond /twitter unwatch (.*)$/i, (msg) ->
-    tag = msg.match[1]
+  destroyTwitterStream = (tag) ->
     stream = _.find(streams, (s) ->
       s.key is tag
     )
     if stream?
       stream.fn.destroy()
-      streams = _.without(streams, _findWhere(streams, stream))
-      msg.send "I stopped watching " + tag
-    else
-      msg.send "I do not known such tag."
+      streams = _.without(streams, _.findWhere(streams, stream))
+
+  # init
+  _.each tracks, (track) ->
+    createTwitterStream("sandbox", track)
+
+  # respond 
+  robot.respond /twitter watch (.*)$/i, (msg) ->
+    createTwitterStream(msg.room, msg.match[1])
+    msg.send "I start watching " + msg.match[1]
+
+  robot.respond /twitter unwatch (.*)$/i, (msg) ->
+    tag = msg.match[1]
+    destroyTwitterStream(tag)
+    msg.send "I stopped watching " + tag
 
   robot.respond /twitter list/i, (msg) ->
     if streams.length > 0
@@ -74,3 +79,4 @@ module.exports = (robot) ->
         streams = _.without(streams, _.findWhere(streams, s))
     else
       msg.send "I have no tags."
+
