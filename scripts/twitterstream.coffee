@@ -53,7 +53,7 @@ module.exports = (robot) ->
 
   # init
   _.each tracks, (track) ->
-    createTwitterStream("#sandbox", track)
+    createTwitterStream("sandbox@conference.m544.xmpp.slack.com", track)
 
   # respond 
   robot.respond /twitter watch (.*)$/i, (msg) ->
