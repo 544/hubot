@@ -31,7 +31,7 @@ tracks = [ "グラコレ", "グランドコレクション" ]
 
 streams = []
 module.exports = (robot) ->
-  createTwitterStream = (room, tag) =>
+  createTwitterStream = (room, tag) ->
     twit.stream "statuses/filter",
       track: tag
     , (stream) ->
@@ -43,7 +43,7 @@ module.exports = (robot) ->
       stream.on "destroy", (data) ->
         robot.messageRoom room, "I do not watch " + tag + " anymore..."
 
-  destroyTwitterStream = (tag) =>
+  destroyTwitterStream = (tag) ->
     stream = _.find(streams, (s) ->
       s.key is tag
     )
@@ -53,7 +53,7 @@ module.exports = (robot) ->
 
   # init
   _.each tracks, (track) ->
-    createTwitterStream("sandbox@conference.m544.xmpp.slack.com", track)
+    createTwitterStream("sandbox", track)
 
   # respond 
   robot.respond /twitter watch (.*)$/i, (msg) ->
