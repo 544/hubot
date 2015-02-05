@@ -2,3 +2,4 @@ node_modules
 .DS_Store*
 updateheroku.sh
 .hubot_history
+dump.rdb
