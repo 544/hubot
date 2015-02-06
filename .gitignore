@@ -3,3 +3,4 @@ node_modules
 updateheroku.sh
 .hubot_history
 dump.rdb
+npm-debug.log
