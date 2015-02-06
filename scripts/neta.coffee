@@ -12,6 +12,14 @@ omaeha = [
   "https://dl.dropboxusercontent.com/s/bv8bo2px3fn93gh/put.jpg",
 ]
 
+desukara = [
+  "http://cdn-ak.f.st-hatena.com/images/fotolife/a/aminato1073/20140617/20140617151010.jpg",
+  "http://pic.prepics-cdn.com/pib1297292620/5970502_220x165.jpeg",
+  "http://img02.naturum.ne.jp/usr/hentaigotyou/bukiyou-300x143.jpg",
+  "http://blog-imgs-33.fc2.com/c/o/m/comicyarou/kuro2.jpg",
+  "http://pds2.exblog.jp/pds/1/200906/07/85/e0131985_22314273.jpg"
+]
+
 ktkr_text = [
   "ｷﾀ━━ﾟ+.ヽ(≧▽≦)ﾉ.+ﾟ━━ ｯ !!!",
   "ｷﾀ━━(━(━(-( ( (ﾟ∀ﾟ) ) )-)━)━) ━━ !!!!!",
@@ -111,6 +119,9 @@ module.exports = (robot) ->
 
   robot.hear /うほほ/i, (msg) ->
     msg.send 'そんなに儲かっちゃうの！'
+
+  robot.hear /ですから$/i, (msg) ->
+    msg.send msg.random desukara
 
   robot.hear /bleach/i, (msg) ->
     msg.send msg.random bleach_poem
