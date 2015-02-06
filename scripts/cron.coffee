@@ -7,5 +7,5 @@ module.exports = (robot) ->
     console.log("test")
 
     # これならおっけー☆
-    robot.messageRoom "sandbox", "テスト"
+    robot.messageRoom "sandbox@#{process.env.HUBOT_XMPP_HOST}", "テスト"
   , null, true, "Asia/Tokyo"
