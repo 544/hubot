@@ -26,7 +26,7 @@ twit = new twitter(auth)
 query = "艦これ"
 module.exports = (robot) ->
 
-  new CronJob '*/1 * * * * *', () =>
+  new CronJob '0 */1 * * * *', () =>
     lastid = robot.brain.get(BRAIN_KEY) or 0
 
     twit.get 'search/tweets',
@@ -38,6 +38,6 @@ module.exports = (robot) ->
       _.each tweets.statuses.reverse(), (tweet) ->
         if tweet.id > lastid
           robot.brain.set BRAIN_KEY, tweet.id
-        console.log(tweet)
-        robot.send {room: ROOM}, "https://twitter.com/#{tweet.user.id_str}/status/#{tweet.id_str}"
+        console.log(tweet.text)
+        robot.send {room: ROOM}, "https://twitter.com/#{tweet.user.id_str}/status/#{tweet.id_str}" if lastid < tweet.id
   , null, true, "Asia/Tokyo"
