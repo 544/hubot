@@ -26,7 +26,7 @@ twit = new twitter(auth)
 query = "艦これ"
 module.exports = (robot) ->
 
-  new CronJob '0 */1 * * * *', () =>
+  new CronJob '*/30 * * * * *', () =>
     lastid = robot.brain.get(BRAIN_KEY) or 0
 
     twit.get 'search/tweets',
