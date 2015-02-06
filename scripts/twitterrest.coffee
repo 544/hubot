@@ -23,10 +23,10 @@ auth =
   "access_token_secret" : process.env.TWITTER_ACCESS_TOKEN_SECRET
 
 twit = new twitter(auth)
-query = "艦これ"
+query = "グラコレ OR グランドコレクション"
 module.exports = (robot) ->
 
-  new CronJob '*/30 * * * * *', () =>
+  new CronJob '* */10 * * * *', () =>
     lastid = robot.brain.get(BRAIN_KEY) or 0
 
     twit.get 'search/tweets',
@@ -38,6 +38,6 @@ module.exports = (robot) ->
       _.each tweets.statuses.reverse(), (tweet) ->
         if tweet.id > lastid
           robot.brain.set BRAIN_KEY, tweet.id
-        console.log(tweet.text)
+        #console.log(tweet.text)
         robot.send {room: ROOM}, "https://twitter.com/#{tweet.user.id_str}/status/#{tweet.id_str}" if lastid < tweet.id
   , null, true, "Asia/Tokyo"
