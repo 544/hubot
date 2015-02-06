@@ -27,43 +27,31 @@ twit = new twitter(auth)
 tracks = [ "グラコレ", "グランドコレクション", "艦これ" ]
 streams = []
 module.exports = (robot) ->
-  createTwitterStream = (room, tag) ->
-    twit.stream 'statuses/filter',
-      track: tag
-    , (stream) ->
-      streams.push {key: tag, fn: stream}
-      stream.on "data", (data) ->
-        robot.messageRoom room, "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
-      stream.on "destroy", (data) ->
-        robot.messageRoom room, "I do not watch " + tag + " anymore..."
-
-  destroyTwitterStream = (tag) ->
-    stream = _.find(streams, (s) ->
-      s.key is tag
-    )
-    if stream?
-      stream.fn.destroy()
-      streams = _.without(streams, _.findWhere(streams, stream))
 
   # init
-  _.each tracks, (track) ->
-    createTwitterStream("sandbox", track)
+  #_.each tracks, (track) ->
+  #  createTwitterStream("sandbox", track)
 
   # respond 
   robot.respond /twitter watch (.*)$/i, (msg) ->
     twit.stream 'statuses/filter',
       track: msg.match[1]
     , (stream) ->
-      streams.push {key: tag, fn: stream}
+      streams.push {key: msg.match[1], fn: stream}
       stream.on "data", (data) ->
         robot.messageRoom msg.room, "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
       stream.on "destroy", (data) ->
-        robot.messageRoom msg.room, "I do not watch " + tag + " anymore..."
+        robot.messageRoom msg.room, "I do not watch " + msg.match[1] + " anymore..."
     msg.send "I start watching " + msg.match[1]
 
   robot.respond /twitter unwatch (.*)$/i, (msg) ->
     tag = msg.match[1]
-    destroyTwitterStream(tag)
+    stream = _.find(streams, (s) ->
+      s.key is tag
+    )
+    if stream?
+      stream.fn.destroy()
+      streams = _.without(streams, _.findWhere(streams, stream))
     msg.send "I stopped watching " + tag
 
   robot.respond /twitter list/i, (msg) ->
