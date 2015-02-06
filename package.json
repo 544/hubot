@@ -32,7 +32,6 @@
     "cheerio": "^0.18.0",
     "cron": "^1.0.6",
     "eastasianwidth": "^0.1.0",
-    "hubot-rss-reader": "^0.6.5",
     "hubot-sushiyuki": "0.0.8",
     "request": "^2.51.0",
     "twitter": "^1.2.1",
