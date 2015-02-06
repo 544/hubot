@@ -51,7 +51,14 @@ module.exports = (robot) ->
 
   # respond 
   robot.respond /twitter watch (.*)$/i, (msg) ->
-    createTwitterStream(msg.room, msg.match[1])
+    twit.stream 'statuses/filter',
+      track: msg.match[1]
+    , (stream) ->
+      streams.push {key: tag, fn: stream}
+      stream.on "data", (data) ->
+        robot.messageRoom msg.room, "@" + data.user.screen_name + " (" + data.user.name + ") - " + data.text + "\n"
+      stream.on "destroy", (data) ->
+        robot.messageRoom msg.room, "I do not watch " + tag + " anymore..."
     msg.send "I start watching " + msg.match[1]
 
   robot.respond /twitter unwatch (.*)$/i, (msg) ->
