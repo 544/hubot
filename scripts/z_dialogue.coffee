@@ -12,15 +12,14 @@ module.exports = (robot) ->
   api_key = process.env.DOCOMO_API_KEY
   status = { 'place': '東京' }
 
-  cmds = []
-  for help in robot.helpCommands()
-    cmd = help.split(' ')[1]
-    cmds.push cmd if cmds.indexOf(cmd) is -1
-
   robot.respond /(.+)$/i, (msg) ->
     return unless api_key
-    cmd = msg.match[1].split(' ')[0]
-    return unless cmds.indexOf(cmd) is -1
+    rescmd = msg.match[1].split(' ')[0]
+    cmds = []
+    for help in robot.helpCommands()
+      cmd = help.split(' ')[1]
+      cmds.push cmd if cmds.indexOf(cmd) is -1
+    return unless cmds.indexOf(rescmd) is -1
 
     status['nickname'] = msg.envelope.user.name
     status['utt'] = msg.match[1]
