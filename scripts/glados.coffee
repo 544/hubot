@@ -2,7 +2,8 @@
 #   Joke commands.
 #
 # Commands:
-#   replay GLaDOS 
+#   hubot hi   - replay GLaDOS tan
+#   hubot kill - replay GLaDOS tan
 #
 # Notes:
 #   ネタ/ジョーク系のbot全般
