@@ -1,1 +1,1 @@
-web: bin/hubot --adapter slack -n glados
+web: bin/hubot -a xmpp -n glados
