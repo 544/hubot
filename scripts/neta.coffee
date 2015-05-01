@@ -2,7 +2,6 @@
 #   Joke commands.
 #
 # Commands:
-#   〜でもいえる？ - You reply with, "サバンナのライオン"
 #
 # Notes:
 #   ネタ/ジョーク系のbot全般
@@ -91,28 +90,6 @@ String::toArray = ->
 module.exports = (robot) ->
   robot.respond /hello/i, (msg) ->
     msg.send "@channel: hello"
-
-  robot.respond /(.*)でもいえる？/i, (msg) ->
-    msg.send """
-```
-　　　　　　　　　,、,, ,、,, ,,　,,
-　　　　　　　_,,;' '" '' ゛''" ゛' ';;,,
-　　　　　　（rヽ,;''""''゛゛゛'';, ﾉｒ）
-　　　　　　,;'゛ i ＿　　、＿ iヽ゛';,　　　　>>1お前それ#{msg.match[1]}でも同じ事言えんの？
-　　　　　 ,;'" ''| ヽ・〉　〈・ノ |ﾞ゛ `';,
-　　　　　 ,;''　"|　　 ▼　　 |ﾞ゛　`';,
-　　　　　 ,;''　　ヽ＿人＿ /　　,;'_
-　　　　 ／ｼ、　 ヽ⌒⌒ /　　 ﾘ　＼
-　　　　|　　　"ｒ,,　｀"'''ﾞ´　　,,ﾐ゛　　 |
-　　　　|　　 　　 ﾘ、　　　　,ﾘ　　　　|
-　　　　|　　　i 　　゛ｒ、ﾉ,,ｒ"　i　　　_|
-　　　　|　　　｀ー――----┴ ⌒´ ）
-　　　　（ヽ　 ＿＿＿＿＿＿ ,, ＿´）
-　　　 　（_⌒ ＿＿＿＿＿＿ ,, ィ
-　　　　　　丁　　　　　　　　　　 |
-　　　　　　 |　　　　　　　　　　　|
-```
-  """
 
   robot.respond /(like|いいね|ありがとう|thx|おーい|ちゃん|が|は)/i, (msg) ->
     msg.send msg.random botchan_tsundere
